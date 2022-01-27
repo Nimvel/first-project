@@ -1,0 +1,21 @@
+.nav {
+    padding: 2rem;
+    grid-area: n;
+    background-color: #c47498;
+  }
+
+  .item{
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .item:hover {
+    font-size: 30px;
+  }
+
+  .active {
+    font-size: 30px;
+    color: gold;
+    text-decoration: none;
+  }

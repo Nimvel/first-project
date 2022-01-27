@@ -1,0 +1,10 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 15rem 45rem;
+    padding: 2rem;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
