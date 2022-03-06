@@ -4,7 +4,7 @@ import s from './Post.module.css';
 const Post = (props) => {
     return (
         <div className={s.item}>
-            <img src="https://cs4.pikabu.ru/post_img/big/2015/03/20/6/1426840578_1215893866.jpeg" alt="avatar" />
+            <img src={props.imgURL} alt="avatar" />
             {props.message}
             <div>
                 <span>Like</span>

@@ -1,0 +1,17 @@
+.item {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.nick {
+    margin-left: 1rem;
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}

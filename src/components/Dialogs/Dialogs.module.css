@@ -1,10 +1,9 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 15rem 45rem;
+    grid-template-columns: 25rem 25rem;
     padding: 2rem;
 }
 
-a {
-    color: white;
-    text-decoration: none;
+.messages {
+    position: relative;
 }
