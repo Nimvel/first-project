@@ -4,12 +4,40 @@
   "h h"
   "n c";
   grid-gap: 1rem;
-  grid-template-rows: 5rem 45rem;
-  grid-template-columns: 15rem 60rem;
-  margin: 1rem 2rem;
+  grid-template-rows: 100px 85vh;
+  grid-template-columns: 12rem 60rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.background {
+  position: fixed;
+  /* background-size: cover; */
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
 }
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(241, 197, 215);
+  border-radius: 1rem;
+    color: white;
+  background-color: rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
 }
+
+/* @media (max-width: 1280px) {
+  .background {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 1280px) {
+  .background {
+    width: 100%;
+  }
+} */

@@ -1,5 +1,6 @@
 const addPost = 'add-post';
 const updateNewPostText = 'update-new-post-text';
+const SET_USER_PROFILE = 'set-user-profile';
 
 let initialState = {
     postData: [
@@ -7,7 +8,8 @@ let initialState = {
         { id: 2, message: 'My second post', likesCount: 11, imgURL: 'https://avatarko.ru/img/kartinka/20/zhivotnye_igra_sobaka_19261.jpg' },
         { id: 3, message: 'My third post', likesCount: 1, imgURL: 'https://avatarko.ru/img/avatar/31/zhivotnye_kot_animaciya_30978.gif' },
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -24,6 +26,10 @@ const profileReducer = (state = initialState, action) => {
         case updateNewPostText:
             return { ...state, newPostText: action.newText };
 
+        case SET_USER_PROFILE:
+            return { ...state, 
+                profile: action.profile};
+
         default:
             return state;
     }
@@ -31,5 +37,6 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({ type: addPost });
 export const updateNewPostTextActionCreator = (text) => ({ type: updateNewPostText, newText: text });
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 
 export default profileReducer;

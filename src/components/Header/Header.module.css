@@ -1,10 +1,28 @@
 .header {
     grid-area: h;
-    background-color: #c47498;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.699);
     padding: 1rem;
   }
   
   header img {
     width: 50px;
     background-color: inherit;
+  }
+
+  .loginBloch {
+    float: right;
+    font-size: 20px;
+    color: white;
+    padding: 1rem 1rem;
+  }
+
+  .loginBloch a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .loginBloch a:hover {
+    font-size: 30px;
   }

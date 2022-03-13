@@ -1,0 +1,54 @@
+.users {
+    margin: 2rem 5rem;
+}
+
+.users img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.user {
+    height: 5rem;
+    display: grid;
+    grid-template-areas: 
+    'userPhoto name country'
+    'button status city';
+    grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-gap: 5px;
+    border: solid;
+    border-color: white;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+#userPhoto {grid-area: userPhoto;}
+
+#buttonF {grid-area: button;}
+
+#userName {grid-area: name;}
+
+#userStatus {grid-area: status;}
+
+#userCountry {grid-area: country;}
+
+#userCity {grid-area: city;}
+
+
+.countPage {
+    color: white;
+}
+
+.countPage span {
+    margin-right: 0.5rem;
+}
+
+.selectedPage {
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+
+
