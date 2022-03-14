@@ -1,3 +1,7 @@
 .posts {
     padding: 1rem;
 }
+
+.sendMessage {
+    border-radius: 0.5rem;
+}

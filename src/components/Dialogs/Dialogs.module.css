@@ -2,8 +2,14 @@
     display: grid;
     grid-template-columns: 25rem 25rem;
     padding: 2rem;
+    color: white
 }
 
 .messages {
     position: relative;
+    color: black;
+}
+
+.sendMessage {
+    border-radius: 0.5rem;
 }
