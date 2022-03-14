@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 
 let Users = (props) => {
 
@@ -37,29 +36,9 @@ let Users = (props) => {
                         <img src={u.photos.small ? u.photos.small : userPhoto} alt='userPhoto' />
                     </NavLink>
                 </div>
-                <div id={s.buttonF}>{
-                    
-                    u.followed ?
-                    
-                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.toogleIsFollowingProgress(true, u.id);
-                            usersAPI.unFollow(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.unfollow(u.id);
-                                }
-                                props.toogleIsFollowingProgress(false, u.id);
-                            })
-                        }}>unfollow</button> :
-                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                            props.toogleIsFollowingProgress(true, u.id);
-                            usersAPI.follow(u.id).then(data => {
-                                if (data.resultCode === 0) {
-                                    props.follow(u.id);
-                                }
-                                props.toogleIsFollowingProgress(false, u.id);
-                            })
-                        }}>follow</button>
-                }
+                <div id={s.buttonF}>{u.followed ?
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => { props.unFollow(u.id) }}>unfollow</button> :
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => { props.follow(u.id) }}>follow</button>}
                 </div>
 
                 <div id={s.userName}>{u.name}</div>

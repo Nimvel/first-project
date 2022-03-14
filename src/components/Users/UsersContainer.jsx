@@ -1,33 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, toogleIsFetching, setTotalUsersCount, setUsers, unfollow, toogleIsFollowingProgress } from '../../redux/users-reducer';
+import { setCurrentPage, toogleIsFollowingProgress, getUsers, follow, unFollow } from '../../redux/users-reducer';
 import Preloader from '../../common/Preloader/Preloader';
 import Users from './Users';
-import { usersAPI } from '../../api/api.js';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toogleIsFetching(true);
-
-        usersAPI.getUsers(this.props.currentPage, this.props.pagesSize)
-            .then(data => {
-
-                this.props.toogleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pagesSize);
     }
 
     onPageChanged = (pageNumber) => {
+        this.props.getUsers(pageNumber, this.props.pagesSize);
         this.props.setCurrentPage(pageNumber);
-        this.props.toogleIsFetching(true);
-
-        usersAPI.getUsers(pageNumber, this.props.pagesSize)
-            .then(data => {
-                this.props.toogleIsFetching(false);
-                this.props.setUsers(data.items)
-            })
     }
 
     render() {
@@ -38,10 +25,9 @@ class UsersContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 onPageChanged={this.onPageChanged}
                 users={this.props.users}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
                 followingInProgress={this.props.followingInProgress}
-                toogleIsFollowingProgress={this.props.toogleIsFollowingProgress} />
+                follow={this.props.follow}
+                unFollow={this.props.unFollow} />
         </>
     }
 }
@@ -57,7 +43,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps,
-    { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toogleIsFetching, toogleIsFollowingProgress })(UsersContainer);
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps,
+        { setCurrentPage, toogleIsFollowingProgress, getUsers, follow, unFollow })
+)(UsersContainer);
 

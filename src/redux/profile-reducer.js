@@ -1,6 +1,9 @@
+import { profileAPI } from "../api/api";
+
 const addPost = 'add-post';
 const updateNewPostText = 'update-new-post-text';
 const SET_USER_PROFILE = 'set-user-profile';
+const SET_STATUS = 'set-status';
 
 let initialState = {
     postData: [
@@ -9,7 +12,8 @@ let initialState = {
         { id: 3, message: 'My third post', likesCount: 1, imgURL: 'https://avatarko.ru/img/avatar/31/zhivotnye_kot_animaciya_30978.gif' },
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -27,8 +31,10 @@ const profileReducer = (state = initialState, action) => {
             return { ...state, newPostText: action.newText };
 
         case SET_USER_PROFILE:
-            return { ...state, 
-                profile: action.profile};
+            return { ...state, profile: action.profile };
+
+        case SET_STATUS:
+            return { ...state, status: action.status };
 
         default:
             return state;
@@ -38,5 +44,32 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({ type: addPost });
 export const updateNewPostTextActionCreator = (text) => ({ type: updateNewPostText, newText: text });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const setUserStatus = (status) => ({ type: SET_STATUS, status });
+
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfile(data))
+        })
+    }
+}
+
+export const getStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId).then(data => {
+            dispatch(setUserStatus(data))
+        })
+    }
+}
+
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setUserStatus(status))
+            }
+        })
+    }
+}
 
 export default profileReducer;
