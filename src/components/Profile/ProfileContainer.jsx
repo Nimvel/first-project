@@ -8,10 +8,22 @@ import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match ? this.props.match.params.userId : 22798;
+        let userId = this.props.match.params.userId;
+
+        if (!userId) {
+            if (this.props.isAuth) {
+                userId = this.props.userId
+            }
+        } 
 
         this.props.getProfile(userId);
         this.props.getStatus(userId);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            this.props.getProfile(this.props.match.params.userId);
+        }
     }
 
     render() {
@@ -23,7 +35,9 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    userId: state.auth.id,
+    isAuth: state.auth.isAuth
 })
 
 const WithUrlDataContainerComponent = (props) => {
@@ -32,6 +46,6 @@ const WithUrlDataContainerComponent = (props) => {
 }
 
 export default compose(
-    // withAuthRedirect,
+    withAuthRedirect,
     connect(mapStateToProps, { getProfile, getStatus, updateStatus })
 )(WithUrlDataContainerComponent);

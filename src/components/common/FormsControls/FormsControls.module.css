@@ -2,3 +2,6 @@
 .error textarea {
     border: solid 0.2rem red;
 }
+.formError {
+    border: solid 0.2rem red;
+}
