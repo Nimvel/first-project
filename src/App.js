@@ -1,8 +1,13 @@
 import React from 'react';
-import background from './assets/images/background-image.jpg';
 import { Route, Routes } from 'react-router-dom';
-import { initializeApp } from './redux/app-reducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import Preloader from './components/common/Preloader/Preloader';
 import './App.css';
+import background from './assets/images/background-image.jpg';
+import { initializeApp } from './redux/app-reducer';
+
 import HeaderContainer from './components/Header/HeaderContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import Login from './components/Login/Login';
@@ -13,9 +18,6 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import UsersContainer from './components/Users/UsersContainer';
-import { connect } from 'react-redux';
-import Preloader from './components/common/Preloader/Preloader';
-import { compose } from 'redux';
 
 class App extends React.Component {
     componentDidMount() {

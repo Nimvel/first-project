@@ -2,16 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useMatch } from 'react-router-dom';
 import { compose } from 'redux';
+
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { getProfile, getStatus, updateStatus } from '../../redux/profile-reducer';
+import { getIsAuthSelector, getProfileSelector, getStatusSelector, getUserIdSelector } from '../../redux/profile-selectors';
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+        let {match, isAuth} = this.props
+        let userId = match.params.userId;
 
         if (!userId) {
-            if (this.props.isAuth) {
+            if (isAuth) {
                 userId = this.props.userId
             }
         } 
@@ -34,10 +37,10 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    userId: state.auth.id,
-    isAuth: state.auth.isAuth
+    profile: getProfileSelector(state) ,
+    status: getStatusSelector(state),
+    userId: getUserIdSelector(state),
+    isAuth: getIsAuthSelector(state)
 })
 
 const WithUrlDataContainerComponent = (props) => {

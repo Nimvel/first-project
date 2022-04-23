@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { sendMessageActionCreator } from '../../redux/dialogs-reducer';
+import { getDialogsDataSelector, getMessageDataSelector, getNewMessageSelector } from '../../redux/dialogs-selectors';
 import Dialogs from './Dialogs';
 
 const mapStateToProps = (state) => {
     return {
-        dialogsData: state.dialogsPage.dialogsData,
-        messageData: state.dialogsPage.messageData,
-        newMessageText: state.dialogsPage.newMessageText
+        dialogsData: getDialogsDataSelector(state),
+        messageData: getMessageDataSelector(state),
+        newMessageText: getNewMessageSelector(state)
     }
 }
 

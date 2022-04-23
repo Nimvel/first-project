@@ -35,20 +35,3 @@
 #userCountry {grid-area: country;}
 
 #userCity {grid-area: city;}
-
-
-.countPage {
-    color: white;
-}
-
-.countPage span {
-    margin-right: 0.5rem;
-}
-
-.selectedPage {
-    color: black;
-    font-size: large;
-    font-weight: bold;
-}
-
-
